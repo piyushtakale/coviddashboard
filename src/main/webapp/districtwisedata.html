@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/component.css">
+
+
+</head>
+<body onload="loadStateList()">
+
+	<nav class="navbar navbar-dark navbar-expand-md fixed-top" >
+		<div class="container">
+			<a class="navbar-brand mr-3" href="index.jsp">bhendi</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  
+		  	<div class="collapse navbar-collapse" id="Navbar">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" href="index.jsp"><span class="fa fa-home fa-lg"></span> Home</a></li>
+					<li class="nav-item active"><a class="nav-link" href="districtwisedata.html"><span class="fa fa-info fa-lg"></span>Districts wise</a></li>
+				
+					<li class="nav-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pass</a>
+						<div class="dropdown-menu">
+							<a href="passform.jsp" class="dropdown-item">Generate Pass</a>
+							<a href="passform.jsp" class="dropdown-item">Check Status</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Get Report</a>
+						<div class="dropdown-menu">
+							<a href="downloadexcelfiile" class="dropdown-item">Download now!</a>
+							<a href="#" id="getreportmail" class="dropdown-item">Get Report on Email</a>
+						</div>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav ml-auto" id="login">
+					<li class="nav-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Admin</a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a href="login.html" class="dropdown-item">Login</a>
+							<a href="login.html" class="dropdown-item">Sign up</a>
+						</div>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav ml-auto" id="logout" style="display: inline-block;">
+					<li class="nav-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Admin</a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a href="admin/displaypasslist" class="dropdown-item">Approve Pass</a>
+							<a href="admin/displayuserlist" class="dropdown-item">Approve User</a>
+							<div class="dropdown-divider"></div>
+							<a href="logout" class="dropdown-item">Logout</a>
+						</div>
+					</li>
+				</ul>
+			
+		  	</div>
+		</div>
+	</nav>
+	<div id="getmailmodal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-md" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h4 class="modal-title">Get Detailed document on Email</h4>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<h6 id="status" style="color: rgb(0, 153, 115);"></h6>
+			  <form>
+				<div class="form-row">
+				  <div class="form-group col-12">
+					<label class="sr-only col-2" for="exampleInputEmail3">Email address</label>
+					<input type="email" class="form-control form-control-sm mr-1" id="email" placeholder="Enter email">
+				  </div>
+				</div>
+				<div class="form-row">
+				  <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Cancel</button>
+				  <button onclick="sendMail()" class="btn btn-primary ml-1">Send mail</button>
+				</div>
+			  </form>
+			</div>
+		  </div>
+		</div>
+	  </div>	
+	  <div id="selectstate" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-md" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h4 class="modal-title">Select State</h4>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+			  <form>
+				<div class="form-row">
+				  <div class="form-group col-12">
+					<label class="sr-only col-2" for="exampleInputEmail3">Email address</label>
+					
+					<select name="stateList1" id="stateList1" class="col-12 form-control form-control-sm mr-1" onchange="loadTableData(this)">
+						<option value="select">Select State</option>
+					</select>
+				  </div>
+				</div>
+			  </form>
+			</div>
+		  </div>
+		</div>
+	  </div>
+		
+		
+		
+	<div class="container">
+		
+		<div class="row row-content">
+			<div class="col-12">
+				<div class="row align-items-center  mb-3">
+					<div class="col-lg-6 col-12">
+						<h2>COVID-19 Cases all over India</h2> 
+					</div>
+					<div class="col-lg-6 col-12 mt-3 mt-md-0">
+						<select name="stateList" id="stateList" class="col-12" onchange="loadTableData(this)">
+							<option value="select">Select State</option>
+						</select>
+					</div>
+				</div>
+				<ul class="nav nav-tabs">
+					<li class="nav-item ">
+						<a class="nav-link active" href="#peter" role="tab" data-toggle="tab">Confirmed</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#danny" role="tab"
+						  data-toggle="tab">Recovered</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#agumbe"role="tab"
+						  data-toggle="tab">Deceased</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#actives"role="tab"
+						  data-toggle="tab">Deceased</a>
+					</li>
+				</ul>
+	
+				
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane dafe show active" id="peter">
+						<div class="row row-content">
+							<div class="chart-container col-lg-6 col-12">
+								<h1 id="totalc" class="mt-0"></h1>
+								<canvas id="confirmChart" aria-label="Hello ARIA World" role="img"></canvas>
+							</div>
+							<div class="piechart-container col-lg-6 col-12">
+								<h1 id="totalpc" class="mt-0"></h1>
+								<canvas id="confirmPieChart" aria-label="Hello ARIA World" role="img"></canvas>
+							</div>
+						</div>
+					</div>   
+					<div role="tabpanel" class="tab-pane dafe" id="danny">
+						<div class="row row-content">
+							<div class="chart-container col-lg-6 col-12">
+								<h1 id="totalr" class="mt-0"></h1>
+								<canvas id="recoveryChart" aria-label="Hello ARIA World" role="img"></canvas>
+							</div>
+							<div class="piechart-container col-lg-6 col-12">
+								<h1 id="totalpr" class="mt-0"></h1>
+								<canvas id="recoveryPieChart" aria-label="Hello ARIA World" role="img"></canvas>
+							</div>
+						</div>
+						
+					</div>    
+					<div role="tabpanel" class="tab-pane dafe" id="agumbe">
+						<div class="row row-content">
+							<div class="chart-container col-lg-6 col-12">
+								<h1 id="totald" class="mt-0"></h1>
+								<canvas id="deathChart" aria-label="Hello ARIA World" role="img"></canvas>
+							</div>
+							<div class="piechart-container col-lg-6 col-12">
+								<h1 id="totalpd" class="mt-0"></h1>
+								<canvas id="deathPieChart" aria-label="Hello ARIA World" role="img"></canvas>
+							</div>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane dafe" id="actives">
+						<div class="row row-content">
+							<div class="piechart-container col-lg-6 col-12 mt-0">
+								<h1 id="totalpa" class="mt-0"></h1>
+								<canvas id="activePieChart" aria-label="Hello ARIA World" role="img"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row row-content">
+			<h2>Covid-19 Status in Districts</h2>
+			<div class="table-responsive">
+				
+				<table id="districtTable" class="table table-striped table-hover">
+					<thead class="thead-dark">
+						<tr>
+							<th>Districts</th>
+							<th>Confirmed</th>
+							<th>Recovered</th>
+							<th>Deseased</th>
+							<th>Active</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+		
+	</div>
+
+
+	States : 
+    <table border="1" id="districtTable" style="display: none">
+		<tr>
+   			<th>District Name</th>
+      		<th>Confirmed Cases</th>
+      		<th>Active Cases</th>
+      		<th>Deceased Cases</th>
+      		<th>Recovered Cases</th>
+	    </tr>
+	</table>
+	
+	
+	
+	<script src="js/jquery.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+	<script src="js/districtwise.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>

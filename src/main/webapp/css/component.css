@@ -1,0 +1,143 @@
+@charset "ISO-8859-1";
+	.chart-container {
+		  position: relative;
+		  
+		  height: 80vh;
+		  width: 80vw;
+	}
+	.piechart-container {
+		  position: relative;
+		  margin: auto;
+		  height: 70vh;
+
+      
+	}
+  
+  html {
+    scroll-behavior: smooth;
+    
+  }
+
+	.row-header {
+  margin: 0px auto;
+  padding: 0px 0px;
+  color: rgb(175, 0, 0);
+}
+
+.row-content {
+  margin: 0px auto;
+  padding: 50px 0px;
+  min-height: auto; }
+
+.footer {
+  background-color: #D1C4E9;
+  margin: 0px auto;
+  padding: 20px 0px; }
+
+.jumbotron {
+  margin: 0px auto;
+  padding: 70px 30px;
+  background: #9575CD;
+  color: floralwhite; }
+
+address {
+  font-size: 80%;
+  margin: 0px;
+  color: #0f0f0f; }
+
+body {
+  padding: 50px 0px 0px 0px;
+  z-index: 0; }
+
+.navbar-dark {
+  background-image: linear-gradient(to right, rgb(0, 124, 195),  rgb(0, 194, 74) );
+ }
+
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px; }
+
+.carousel {
+  background: #512DA8; }
+  .carousel .carousel-item {
+    height: 300px; }
+    .carousel .carousel-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-height: 300px; }
+
+#carouselButton {
+  right: 0px;
+  position: absolute;
+  bottom: 0px;
+  z-index: 1; }
+  
+nav {
+  background-color: #0f0f0f;
+}
+.tab-content .chart-container{
+  height: 60vh;
+}
+@media only screen and (max-width: 480px) {
+  .tab-content .chart-container{
+    height: 60vh;
+  }
+  .nav-tabs .nav-link{
+    font-size: 90%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .tab-content .chart-container{
+    height: 55vh;
+  }
+}
+@media only screen and (max-width: 991px) {
+  
+  .piechart-container {
+    position: relative;
+    margin-top: 25%;
+    height: 90vh;
+  }
+}
+tr td{
+  font-weight: 600;
+}
+table td:nth-child(2){
+  color:rgb(177, 80, 0);
+}
+table td:nth-child(3){
+  color: rgb(0, 131, 0);
+}
+table td:nth-child(4){
+  color: rgb(131, 0, 0);
+}
+table td:nth-child(5){
+  color: rgb(2, 0, 134);
+}
+
+thead{
+  background-color: rgb(rgb(46, 46, 46), green, blue);
+}
+
+.tab-pane > .row-content{
+  padding-top: 1%;
+}
+h1 h2{
+  font-size: 70%;
+  display: inline;
+}
+h1[id ^= "total"]{
+  font-weight: bold;
+
+}
+.dropdown-menu, .dropdown-menu-right{
+  transition: all 1s;
+}
+
+.table-responsive{
+  border-left: 1px solid rgb(216, 216, 216);
+  border-right: 1px solid rgb(199, 199, 199);
+}
